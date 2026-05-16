@@ -20,7 +20,11 @@ CREATE TABLE IF NOT EXISTS items (
 
 conn.commit()
 
+@app.route("/")
+def home():
+    return "Backend works!"
 @app.route("/api/data", methods=["GET"])
+
 def get_data():
     cur.execute("SELECT * FROM items")
     rows = cur.fetchall()
@@ -65,5 +69,5 @@ def delete_data(id):
     })
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
